@@ -1,3 +1,4 @@
 __pycache__
 .idea
-output
+output/frames
+output/mesaclip.mp4
