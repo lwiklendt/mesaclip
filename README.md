@@ -1,4 +1,4 @@
-An O(n) algorithm for clipping wide peaks from 1D signals.
+An O(n) algorithm for clipping wide peaks from 1D signals, designed for application to removing harminc artefacts from the continuous wavelet transform.
 
 Given a signal with amplitudes `y[0..n-1]` and non-decreasing locations `x[0..n-1]`,
 clips all peaks that are too wide `x[b] - x[a] > k` for all `b > a` and given parameter `k`.
@@ -16,5 +16,5 @@ The middle subplots use a conventional Morse(&beta;=12, &gamma;=3) wavelet trans
 
 | | |
 :---:|:---:
-![](output/dirac_from_sin.png) | ![](output/burst_dirac.png)
-![](output/chirp_thresh.png) | ![](output/real.png)
+From a smooth to a spiky signal ![](output/dirac_from_sin.png) | Bursts of Dirac deltas ![](output/burst_dirac.png)
+Thresholded chirp               ![](output/chirp_thresh.png)   | Real EMG signal        ![](output/real.png)
