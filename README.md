@@ -18,3 +18,6 @@ The middle subplots use a conventional Morse(&beta;=12, &gamma;=3) wavelet trans
 :---:|:---:
 From a smooth to a spiky signal ![](output/dirac_from_sin.png) | Bursts of Dirac deltas ![](output/burst_dirac.png)
 Thresholded chirp               ![](output/chirp_thresh.png)   | Real EMG signal        ![](output/real.png)
+
+The choice of &beta;=1.58174 is based on minimising the 1st harmonic amplitude of a Dirac comb halfway between two Dirac delta functions:
+![](output/beta_opt.png)
