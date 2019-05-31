@@ -61,14 +61,14 @@ def find_extrema(x):
 def mesaclip(x, y, k):
     """
     Clips the peaks of y to plateaus of minimum distance k, where the distance between i and j is x[j] - x[i].
-    :param x: monotonically increasing input array specifying the x position of each element of y
+    :param x: non-decreasing input array specifying the x position of each element of y
     :param y: input/output array, heights for clipping
     :param k: input scalar, minimum plateau distance
     """
 
-    # ensure monotonically increasing x
+    # ensure non-decreasing x
     if np.any(np.diff(x) < 0):
-        raise RuntimeError('x is not monotonically increasing')
+        raise RuntimeError('x is not non-decreasing')
 
     # if entire signal is too short, then clip everything
     if x[-1] - x[0] < k:
@@ -94,7 +94,7 @@ def mesaclip(x, y, k):
 
             # found peak
 
-            # hold an expanding range (a, b + 1) where a can decrease and b increase,
+            # hold an expanding range [a:b+1] where a can decrease and b increase,
             a = i
             b = i
 
