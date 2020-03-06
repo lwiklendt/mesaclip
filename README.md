@@ -5,8 +5,7 @@ clips all peaks that are too wide `x[b] - x[a] > k` for all `b > a` and given pa
 
 The following animation shows an example with a uniformally increasing `x` along the horizontal, `y` along the vertical, and `k = 12`:
 
-![algorithm visualisation](output/mesaclip.gif)
-
+<img src="output/mesaclip.gif" width="500">
 
 The `mesaclip.py` file contains the main algorithm in the `mesaclip` function, and `demo.py` will reproduce the animation.
 Running the `mesaclip.py` file will run tests on random signals.
@@ -16,8 +15,17 @@ The middle subplots use a conventional Morse(&beta;=12, &gamma;=3) wavelet trans
 
 | | |
 :---:|:---:
-From a smooth to a spiky signal ![](output/dirac_from_sin.png) | Bursts of Dirac deltas ![](output/burst_dirac.png)
-Thresholded chirp               ![](output/chirp_thresh.png)   | Real EMG signal        ![](output/real.png)
+From a smooth to a spiky signal <img src="output/dirac_from_sin.png" width="400"> | Bursts of Dirac deltas <img src="output/burst_dirac.png" width="400">
+Thresholded chirp               <img src="output/chirp_thresh.png"   width="400"> | Real EMG signal        <img src="output/real.png"        width="400">
 
 The choice of &beta;=1.58174 is based on minimising the 1st harmonic amplitude of a Dirac comb halfway between two Dirac delta functions:
-![](output/beta_opt.png)
+<img src="output/beta_opt.png" width="600">
+
+Example applications to some real EMG data:
+<img src="output/real_data.png" width="600">
+
+Exploration of signal-to-noise ratio for artificial spike-train signals of varying regularity:
+<img src="output/snr_vs_peak_detect_examples.png" width="600">
+
+Estimates of the ground truth frequency:
+<img src="output/snr_vs_peak_detect_errors.png" width="600">

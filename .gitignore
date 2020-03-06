@@ -3,3 +3,4 @@ __pycache__
 output/frames
 output/mesaclip.mp4
 output/*.pdf
+output/*.pkl

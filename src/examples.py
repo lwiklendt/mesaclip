@@ -5,41 +5,10 @@ import numpy as np
 import scipy.ndimage
 import scipy.signal
 
+import colorednoise
+
 import wavelet
-
-
-def inv_power_noise(t, gamma=1.0, min_freq=0.0, max_freq=np.inf):
-
-    def spec_func(f_):
-        f_ = np.abs(f_)
-        f_[f_ > 0] **= -gamma
-        return f_
-
-    dt = t[1] - t[0]
-    f = np.fft.fftfreq(2 * len(t) + 1, d=dt)
-    f[f <= min_freq] = 0
-    f[f > max_freq] = 0
-
-    phases = np.random.uniform(0, 2 * np.pi, len(f))
-    phases[:len(t)] = phases[len(t)+1:]
-    c = spec_func(f) * np.exp(1j * phases)
-
-    y = np.fft.ifft(c)[:len(t)].real
-
-    # normalise to unit standard deviation
-    y = y / np.std(y)
-
-    return y, f[:len(t)]
-
-
-def make_edges(x, log=False):
-    if log:
-        x = np.log(x)
-    dx = x[1] - x[0]
-    x_edges = np.r_[x, x[-1] + dx] - 0.5 * dx
-    if log:
-        x_edges = np.exp(x_edges)
-    return x_edges
+import utils
 
 
 def plot_mesaclipped(t, x, fs, mother1, mother2, freqs, sync_sqz, fig_filename, snr=np.inf, noise_gamma=0, num_scales=2000, split=False):
@@ -47,15 +16,12 @@ def plot_mesaclipped(t, x, fs, mother1, mother2, freqs, sync_sqz, fig_filename, 
     print(f'plotting {fig_filename}')
 
     # add noise
-    if noise_gamma == 0:
-        noise = np.random.randn(len(t))
-    else:
-        noise = inv_power_noise(t, gamma=noise_gamma)[0]
-    x = x + np.sqrt(np.var(x) / snr) * (noise / np.std(noise))
+    noise = colorednoise.powerlaw_psd_gaussian(noise_gamma, len(t))
+    x = x + np.sqrt(np.var(x) / snr) * noise
 
     dt = t[1] - t[0]
 
-    min_cycles = 2
+    min_cycles = 8
 
     if sync_sqz:
         syncsqz_freqs = freqs
@@ -136,8 +102,8 @@ def plot_mesaclipped(t, x, fs, mother1, mother2, freqs, sync_sqz, fig_filename, 
     ax_sig.set_title('Signal', loc='left')
 
     # pcolormesh grid coordinates
-    t_edges = make_edges(t)
-    f_edges = make_edges(freqs, log=True)
+    t_edges = utils.make_edges(t)
+    f_edges = utils.make_edges(freqs, log=True)
     t_grid, f_grid = np.meshgrid(t_edges, f_edges)
 
     # cmap = 'gray_r'
