@@ -19,13 +19,17 @@ From a smooth to a spiky signal <img src="output/dirac_from_sin.png" width="400"
 Thresholded chirp               <img src="output/chirp_thresh.png"   width="400"> | Real EMG signal        <img src="output/real.png"        width="400">
 
 The choice of &beta;=1.58174 is based on minimising the 1st harmonic amplitude of a Dirac comb halfway between two Dirac delta functions:
+
 <img src="output/beta_opt.png" width="600">
 
 Example applications to some real EMG data:
+
 <img src="output/real_data.png" width="600">
 
 Exploration of signal-to-noise ratio for artificial spike-train signals of varying regularity:
+
 <img src="output/snr_vs_peak_detect_examples.png" width="600">
 
 Estimates of the ground truth frequency:
+
 <img src="output/snr_vs_peak_detect_errors.png" width="600">
