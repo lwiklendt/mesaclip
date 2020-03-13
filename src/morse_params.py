@@ -110,7 +110,7 @@ def main():
             ax.set_yticks([])
 
     fig.tight_layout()
-    fig.savefig('../output/beta_opt.pdf', dpi=300)
+    # fig.savefig('../output/beta_opt.pdf', dpi=300)
     fig.savefig('../output/beta_opt.png', dpi=300)
     plt.close(fig)
 
