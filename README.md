@@ -1,5 +1,7 @@
 An O(n) algorithm for clipping wide peaks from 1D signals, designed for application to removing harminc artefacts from the continuous wavelet transform.
 
+Published in the open-access article: https://www.frontiersin.org/articles/10.3389/fphys.2020.00484/full
+
 Given a signal with amplitudes `y[0..n-1]` and non-decreasing locations `x[0..n-1]`,
 clips all peaks that are too wide `x[b] - x[a] > k` for all `b > a` and given parameter `k`.
 
