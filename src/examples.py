@@ -21,7 +21,7 @@ def plot_mesaclipped(t, x, fs, mother1, mother2, freqs, sync_sqz, fig_filename, 
 
     dt = t[1] - t[0]
 
-    min_cycles = 8
+    min_cycles = 2
 
     if sync_sqz:
         syncsqz_freqs = freqs
@@ -77,7 +77,7 @@ def plot_mesaclipped(t, x, fs, mother1, mother2, freqs, sync_sqz, fig_filename, 
     # create figure and axes
     fig = plt.figure(figsize=(5, 4))
     gs = gridspec.GridSpec(1 + nw, 2, width_ratios=[1, 0.2], height_ratios=[1, ] + [2, ] * nw)
-    ax = np.zeros((1 + nw, 2), dtype=np.object)
+    ax = np.zeros((1 + nw, 2), dtype=object)
     ax[0, 0] = fig.add_subplot(gs[0, 0])  # signal
     ax_s = None
     for i in range(1, 1 + nw):            # wavelet transform results
